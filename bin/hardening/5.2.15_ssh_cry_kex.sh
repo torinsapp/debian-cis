@@ -23,6 +23,8 @@ FILE='/etc/ssh/sshd_config'
 
 # This function will be called if the script status is on enabled / audit mode
 audit() {
+    cat /opt/debian-cis/etc/conf.d/5.2.15_ssh_cry_kex.cfg
+
     is_pkg_installed "$PACKAGE"
     if [ "$FNRET" != 0 ]; then
         crit "$PACKAGE is not installed!"
@@ -78,7 +80,7 @@ create_config() {
     debug "Debian version : $DEB_MAJ_VER "
     if [[ -z "$DEB_MAJ_VER" ]] || [[ 7 -eq "$DEB_MAJ_VER" ]]; then
         KEX='diffie-hellman-group-exchange-sha256'
-    elif [[ 8 -eq "$DEB_MAJ_VER" ]] || [[ 9 -eq "$DEB_MAJ_VER" ]]; then
+    elif [[ 8 -eq "$DEB_MAJ_VER" ]] || [[ 9 -eq "$DEB_MAJ_VER" ]] || [[ 10 -eq "$DEB_MAJ_VER" ]] || [[ 11 -eq "$DEB_MAJ_VER" ]]; then
         KEX='curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256'
     else
         KEX='diffie-hellman-group-exchange-sha256'
@@ -89,6 +91,7 @@ status=audit
 # Put your KexAlgorithms
 OPTIONS="KexAlgorithms=$KEX"
 EOF
+
 }
 
 # This function will check config parameters required

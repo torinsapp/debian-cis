@@ -27,7 +27,7 @@ audit() {
     get_debian_major_version
     set +u
     debug "Debian version : $DEB_MAJ_VER "
-    if [[ -z $DEB_MAJ_VER ]]; then
+    if [[ -z "$DEB_MAJ_VER" ]]; then
         set -u
         crit "Cannot get Debian version. Aborting..."
         return
