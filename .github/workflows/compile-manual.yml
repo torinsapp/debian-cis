@@ -14,4 +14,3 @@ jobs:
         with:
           add: 'debian/cis-hardening.8'
           message: 'Regenerate man pages (Github action)'
-          token: ${{ secrets.GITHUB_TOKEN }}
